@@ -40,12 +40,16 @@
             <plugin>
                 <groupId>org.dstovall</groupId>
                 <artifactId>onejar-maven-plugin</artifactId>
-                <version>1.4.4</version>
+                <version>1.4.5</version>
                 <executions>
                     <execution>
                         <configuration>
+                            <onejarVersion>0.97</onejarVersion>
                             <mainClass>com.seanshubin.learn.spark.console.ConsoleApplication</mainClass>
                             <filename>learn-spark.jar</filename>
+                            <manifestEntries>
+                                <One-Jar-URL-Factory>com.simontuffs.onejar.JarClassLoader$FileURLFactory</One-Jar-URL-Factory>
+                            </manifestEntries>
                         </configuration>
                         <goals>
                             <goal>one-jar</goal>
