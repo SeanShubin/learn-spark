@@ -14,13 +14,13 @@ class WordCounterTest extends FunSuite with EasyMockSugar {
       "cad aaa bab aaa"
     )
     val expected = Seq(("aaa", 4), ("bab", 3), ("cad", 3))
-    val sampleRdd = sparkContext.parallelize(sampleLines)
+    val sampleDataset = sparkContext.parallelize(sampleLines)
     val pathSpecification = "path specification"
     val resilientDistributedDatasetLoader = mock[ResilientDistributedDatasetLoader]
     val wordCounter = new WordCounterImpl(pathSpecification, resilientDistributedDatasetLoader)
 
     expecting {
-      resilientDistributedDatasetLoader.loadFromPathPattern("path specification").andReturn(sampleRdd)
+      resilientDistributedDatasetLoader.loadFromPathPattern("path specification").andReturn(sampleDataset)
     }
 
     whenExecuting(resilientDistributedDatasetLoader) {
