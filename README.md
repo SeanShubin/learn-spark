@@ -23,14 +23,14 @@ Your output should be about 441 lines long, first few lines should look like thi
 ## This is test driven! 
 
 ### How to integration test Resilient Distributed Dataset
-[ResilientDistributedDatasetLoaderTest](blob/master/core/src/test/scala/com/seanshubin/learn/spark/core/ResilientDistributedDatasetLoaderTest.scala)
+[ResilientDistributedDatasetLoaderTest](core/src/test/scala/com/seanshubin/learn/spark/core/ResilientDistributedDatasetLoaderTest.scala)
 
 ### How to unit test the Resilient Distributed Dataset
-[WordCounterTest](blob/master/core/src/test/scala/com/seanshubin/learn/spark/core/WordCounterTest.scala)
+[WordCounterTest](core/src/test/scala/com/seanshubin/learn/spark/core/WordCounterTest.scala)
 
 ## It is very easy to compose list transformations
 
-[WordCounterImpl](blob/master/core/src/main/scala/com/seanshubin/learn/spark/core/WordCounterImpl.scala)
+[WordCounterImpl](core/src/main/scala/com/seanshubin/learn/spark/core/WordCounterImpl.scala)
 
     val sortedWordAndCountSeq = logData.
       flatMap(lineToWords).
