@@ -1,7 +1,5 @@
 package com.seanshubin.learn.spark.core
 
-import org.apache.spark.SparkContext._
-
 class WordCounterImpl(pathSpecification: String,
                       resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader) extends WordCounter {
   override def calculateWordHistogram(): Seq[(String, Int)] = {
