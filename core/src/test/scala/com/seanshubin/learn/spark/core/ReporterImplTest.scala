@@ -8,6 +8,6 @@ class ReporterImplTest extends FunSuite {
     val reporter: Reporter = new ReporterImpl(lineEmitter.apply)
     val histogram = Seq("a" -> 1, "b" -> 2, "c" -> 3)
     reporter.generateReport(histogram)
-    assert(lineEmitter.lines === Seq("a -> 1", "b -> 2", "c -> 3"))
+    assert(lineEmitter.lines === Seq("", "histogram:", "  a -> 1", "  b -> 2", "  c -> 3"))
   }
 }
