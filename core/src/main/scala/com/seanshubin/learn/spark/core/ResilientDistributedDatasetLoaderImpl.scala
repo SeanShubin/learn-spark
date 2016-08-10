@@ -1,10 +1,11 @@
 package com.seanshubin.learn.spark.core
 
+import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 
-class ResilientDistributedDatasetLoaderImpl(sparkContextLifecycle: SparkContextLifecycle) extends ResilientDistributedDatasetLoader {
+class ResilientDistributedDatasetLoaderImpl(sparkContext: SparkContext) extends ResilientDistributedDatasetLoader {
   override def loadFromPathPattern(pathPattern: String): RDD[String] = {
-    val dataset = sparkContextLifecycle.sparkContext.textFile(pathPattern)
+    val dataset = sparkContext.textFile(pathPattern)
     dataset
   }
 }

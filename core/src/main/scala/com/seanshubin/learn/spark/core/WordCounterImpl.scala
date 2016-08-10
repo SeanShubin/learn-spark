@@ -1,7 +1,8 @@
 package com.seanshubin.learn.spark.core
 
 class WordCounterImpl(pathSpecification: String,
-                      resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader) extends WordCounter {
+                      resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader,
+                      notifications:Notifications) extends WordCounter {
   override def calculateWordHistogram(): Seq[(String, Int)] = {
     val logData = resilientDistributedDatasetLoader.loadFromPathPattern(pathSpecification).cache()
 
@@ -10,6 +11,8 @@ class WordCounterImpl(pathSpecification: String,
     val wordToWordOne: String => (String, Int) = word => (word, 1)
     val plus: (Int, Int) => Int = (left, right) => left + right
     val wordQuantityToWord: ((String, Int)) => String = wordQuantity => wordQuantity._1
+
+    notifications.describeCalculation(s"scan files in $pathSpecification, split each line into words, only consder words containing an 'a', generate a histogram")
 
     val sortedWordAndCountSeq = logData.
       flatMap(lineToWords).

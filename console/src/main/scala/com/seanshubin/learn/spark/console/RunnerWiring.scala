@@ -4,6 +4,7 @@ import java.nio.charset.{Charset, StandardCharsets}
 import java.nio.file.{Path, Paths}
 
 import com.seanshubin.learn.spark.core._
+import org.apache.spark.{SparkConf, SparkContext}
 
 trait RunnerWiring {
   def configuration: Configuration
@@ -19,14 +20,23 @@ trait RunnerWiring {
     configuration.middleVowels,
     configuration.endingConsonants)
   lazy val sampleDataGenerator: SampleDataGenerator = new SampleDataGeneratorImpl(
-    wordFactory, fileSystem, path, configuration.fileCount, configuration.lineCount, configuration.wordsPerLine)
-  lazy val sparkContextLifecycle: SparkContextLifecycle = new SparkContextLifecycleImpl(
-    configuration.sparkAppName,
-    configuration.sparkMaster)
+    wordFactory,
+    fileSystem,
+    path,
+    configuration.fileCount,
+    configuration.lineCount,
+    configuration.wordsPerLine)
+  lazy val sparkConfig: SparkConf = new SparkConf().
+    setAppName(configuration.sparkAppName).
+    setMaster(configuration.sparkMaster)
+  lazy val sparkContext: SparkContext = new SparkContext(sparkConfig)
   lazy val resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader =
-    new ResilientDistributedDatasetLoaderImpl(sparkContextLifecycle)
-  lazy val wordCounter: WordCounter = new WordCounterImpl(configuration.dataDirectory, resilientDistributedDatasetLoader)
-  lazy val reporter: Reporter = new ReporterImpl(emitLine)
+    new ResilientDistributedDatasetLoaderImpl(sparkContext)
+  lazy val notifications: Notifications = new LineEmittingNotifications(emitLine)
+  lazy val wordCounter: WordCounter = new WordCounterImpl(
+    configuration.dataDirectory,
+    resilientDistributedDatasetLoader,
+    notifications)
   lazy val thirdPartyLogging: ThirdPartyLogging = new ThirdPartyLoggingImpl()
-  lazy val runner: Runner = new RunnerImpl(sampleDataGenerator, wordCounter, reporter, thirdPartyLogging)
+  lazy val runner: Runner = new RunnerImpl(sampleDataGenerator, wordCounter, notifications, thirdPartyLogging)
 }

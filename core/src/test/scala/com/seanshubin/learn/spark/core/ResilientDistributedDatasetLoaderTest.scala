@@ -4,6 +4,7 @@ import java.io.{File, PrintWriter}
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 
+import org.apache.spark.{SparkConf, SparkContext}
 import org.scalatest.FunSuite
 
 class ResilientDistributedDatasetLoaderTest extends FunSuite {
@@ -12,8 +13,8 @@ class ResilientDistributedDatasetLoaderTest extends FunSuite {
     createSampleFile("sample-file-a.txt", "aaa bbb ccc", "ddd eee fff", "ggg hhh iii")
     createSampleFile("sample-file-b.txt", "jjj kkk lll", "mmm nnn ooo", "ppp qqq rrr")
     createSampleFile("sample-file-c.txt", "sss ttt uuu", "vvv www xxx", "yyy zzz aaa")
-    val sparkContextLifecycle: SparkContextLifecycle = new SparkContextLifecycleImpl("Integration Test", "local")
-    val resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader = new ResilientDistributedDatasetLoaderImpl(sparkContextLifecycle)
+    val sparkContext = SparkContextForIntegrationTests.sparkContext
+    val resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader = new ResilientDistributedDatasetLoaderImpl(sparkContext)
     val dataset = resilientDistributedDatasetLoader.loadFromPathPattern(directoryToScan)
     val lines = dataset.toLocalIterator.toSeq
     assert(lines.size === 9)
