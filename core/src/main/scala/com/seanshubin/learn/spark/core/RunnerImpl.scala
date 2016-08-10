@@ -2,7 +2,7 @@ package com.seanshubin.learn.spark.core
 
 class RunnerImpl(sampleDataGenerator: SampleDataGenerator,
                  wordCounter: WordCounter,
-                 notifications:Notifications,
+                 notifications: Notifications,
                  thirdPartyLogging: ThirdPartyLogging) extends Runner {
   override def run(): Unit = {
     thirdPartyLogging.silenceAllLoggers()

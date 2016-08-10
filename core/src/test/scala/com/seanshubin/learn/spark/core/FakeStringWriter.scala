@@ -15,4 +15,6 @@ class FakeStringWriter extends Writer {
   def close(): Unit = {
     closeCount += 1
   }
+
+  def toLines: Seq[String] = toString.split("\r\n|\r|\n").toSeq
 }

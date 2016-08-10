@@ -1,31 +1,26 @@
 package com.seanshubin.learn.spark.core
 
 import org.scalatest.FunSuite
-import org.scalatest.mock.EasyMockSugar
 
-class WordCounterTest extends FunSuite with EasyMockSugar {
+class WordCounterTest extends FunSuite {
   test("histogram") {
-    val sparkContext = SparkContextForIntegrationTests.sparkContext
+    //given
     val sampleLines = Seq(
       "aaa bab cad beb",
       "beb cad bab aaa",
       "cad aaa bab aaa"
     )
     val expected = Seq(("aaa", 4), ("bab", 3), ("cad", 3))
-    val sampleDataset = sparkContext.parallelize(sampleLines)
     val pathSpecification = "path specification"
-    val resilientDistributedDatasetLoader = mock[ResilientDistributedDatasetLoader]
+    val resilientDistributedDatasetLoader = new ResilientDistributedDatasetLoaderStub(Map(pathSpecification -> sampleLines))
     val lineEmitter = new FakeLineEmitter
     val notifications = new LineEmittingNotifications(lineEmitter.apply)
     val wordCounter = new WordCounterImpl(pathSpecification, resilientDistributedDatasetLoader, notifications)
 
-    expecting {
-      resilientDistributedDatasetLoader.loadFromPathPattern("path specification").andReturn(sampleDataset)
-    }
+    //when
+    val actual = wordCounter.calculateWordHistogram()
 
-    whenExecuting(resilientDistributedDatasetLoader) {
-      val actual = wordCounter.calculateWordHistogram()
-      assert(actual === expected)
-    }
+    //then
+    assert(actual === expected)
   }
 }

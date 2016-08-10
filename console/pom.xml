@@ -24,10 +24,6 @@
             <artifactId>scala-library</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.11</artifactId>
         </dependency>
@@ -60,7 +56,8 @@
                             <mainClass>com.seanshubin.learn.spark.console.ConsoleApplication</mainClass>
                             <filename>learn-spark.jar</filename>
                             <manifestEntries>
-                                <One-Jar-URL-Factory>com.simontuffs.onejar.JarClassLoader$FileURLFactory</One-Jar-URL-Factory>
+                                <One-Jar-URL-Factory>com.simontuffs.onejar.JarClassLoader$FileURLFactory
+                                </One-Jar-URL-Factory>
                             </manifestEntries>
                         </configuration>
                         <goals>

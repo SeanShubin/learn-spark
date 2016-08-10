@@ -4,7 +4,6 @@ import java.io.{File, PrintWriter}
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 
-import org.apache.spark.{SparkConf, SparkContext}
 import org.scalatest.FunSuite
 
 class ResilientDistributedDatasetLoaderTest extends FunSuite {

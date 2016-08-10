@@ -11,7 +11,7 @@ class NotificationsTest extends FunSuite {
     assert(lineEmitter.lines === Seq("", "histogram:", "  a -> 1", "  b -> 2", "  c -> 3"))
   }
 
-  test("describe calculation"){
+  test("describe calculation") {
     val lineEmitter = new FakeLineEmitter
     val notifications: Notifications = new LineEmittingNotifications(lineEmitter.apply)
     val description = "some description"

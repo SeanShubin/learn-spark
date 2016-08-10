@@ -1,6 +1,6 @@
 package com.seanshubin.learn.spark.core
 
-class LineEmittingNotifications(emitLine:String => Unit) extends Notifications {
+class LineEmittingNotifications(emitLine: String => Unit) extends Notifications {
   override def describeCalculation(description: String): Unit = {
     emitLine(description)
   }

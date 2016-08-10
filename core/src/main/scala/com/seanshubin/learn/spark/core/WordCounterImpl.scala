@@ -2,7 +2,7 @@ package com.seanshubin.learn.spark.core
 
 class WordCounterImpl(pathSpecification: String,
                       resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader,
-                      notifications:Notifications) extends WordCounter {
+                      notifications: Notifications) extends WordCounter {
   override def calculateWordHistogram(): Seq[(String, Int)] = {
     val logData = resilientDistributedDatasetLoader.loadFromPathPattern(pathSpecification).cache()
 
