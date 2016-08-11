@@ -1,7 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!-- The Basics -->
@@ -12,8 +9,8 @@
     <dependencies>
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_2.10</artifactId>
-            <version>2.2.2</version>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.0.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -23,18 +20,18 @@
             <dependency>
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-library</artifactId>
-                <version>2.11.7</version>
+                <version>2.11.8</version>
             </dependency>
             <dependency>
                 <groupId>org.scalatest</groupId>
                 <artifactId>scalatest_2.11</artifactId>
-                <version>2.2.5</version>
+                <version>3.0.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-core_2.11</artifactId>
-                <version>1.5.1</version>
+                <version>2.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
