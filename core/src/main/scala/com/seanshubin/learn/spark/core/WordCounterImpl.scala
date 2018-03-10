@@ -1,5 +1,6 @@
 package com.seanshubin.learn.spark.core
 
+// add dataframe/dataset example
 class WordCounterImpl(pathSpecification: String,
                       resilientDistributedDatasetLoader: ResilientDistributedDatasetLoader,
                       notifications: Notifications) extends WordCounter {
