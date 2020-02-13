@@ -8,8 +8,7 @@ Sean's word counter application to learn spark
 
 Steps to run
 
-- mvn package
-- java -jar console/target/learn-spark.jar
+- ./build-and-run.sh
 
 Your output should be about 441 lines long, first few lines should look like this:
 
