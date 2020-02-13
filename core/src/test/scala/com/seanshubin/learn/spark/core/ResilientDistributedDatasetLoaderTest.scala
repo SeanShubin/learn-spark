@@ -2,7 +2,7 @@ package com.seanshubin.learn.spark.core
 
 import java.io.{File, PrintWriter}
 import java.nio.charset.StandardCharsets
-import java.nio.file.Files
+import java.nio.file.{Files, Paths}
 
 import org.scalatest.FunSuite
 
